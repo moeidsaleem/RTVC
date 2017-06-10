@@ -1,0 +1,45 @@
+ <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+			<div class="logo">
+				<a href="#/" class="simple-text">
+					RTVC Admin Panel
+				</a>
+			</div>
+
+
+	    	<div class="sidebar-wrapper">
+				<ul class="nav">
+	                <li ng-class="{ active: isActive('/')}">
+	                    <a href="#/home">
+	                        <i class="material-icons">dashboard</i>
+	                        <p>Dashboard</p>
+	                    </a>
+	                </li>
+	                <li>
+	                    <a href="#/profile">
+	                        <i class="material-icons">person</i>
+	                        <p>Profile</p>
+	                    </a>
+	                </li>
+	                <li ng-class="{ active: isActive('#/students')}">
+	                    <a href="#/students">
+	                        <i class="material-icons">library_books</i>
+	                        <p>Students</p>
+	                    </a>
+	                </li>
+	                <li ng-class="{ active: isActive('#/teachers')}">
+	                    <a href="#/teachers">
+	                        <i class="material-icons">content_paste</i>
+	                        <p>Teachers</p>
+	                    </a>
+	                </li>
+	                
+	                <li>
+	                    <a href="#/help">
+	                        <i class="material-icons">bubble_chart</i>
+	                        <p>help</p>
+	                    </a>
+	                </li>
+	               
+	            </ul>
+	    	</div>
+		</div>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html ng-app="app">
+    <head><title>Test</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    
+    </head>
+<body>
+
+
+
+
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand text-center" href="#">CRUD App</a>
+		</div>	
+		</div><!-- /.navbar-collapse -->
+	</div>
+</nav>
+
+
+<div class="container-fluid">
+	<div class="row">
+		
+		<div class="col-md-12">
+			<main ng-view></main>
+
+		</div>
+	</div>
+</div>
+
+
+    <!--Scripts-->
+<script src="app/lib/bower_components/angular/angular.js"></script>
+<script src="app/lib/bower_components/angular-route/angular-route.js"></script>   
+<script src="app/lib/bower_components/firebase/firebase.js"></script>   
+<script src="app/lib/bower_components/angularfire/dist/angularfire.min.js"></script>   
+<script src="app/lib/bower_components/angular-bootstrap/ui-bootstrap.js"></script>   
+<script src="firebase.config.js"></script> 
+
+<!--app.js-->
+<script src="app/app.js"></script>
+<script src="app/routes.js"></script>
+
+<script src="app/modules/homeController.js"></script>
+
+
+
+<!-- Bootstrap -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>
