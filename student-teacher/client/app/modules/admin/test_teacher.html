@@ -1,0 +1,38 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<style>
+video{
+    width:390px;
+    height: 390px;
+}
+
+</style>
+        <section class="main-panel text-center">
+            <div class="make-center">
+                <h2>TEACHER </h2>
+             <input  type="text" ng-model="roomId" value="testing">
+             <button class="btn btn-primary" ng-disabled="openRoomBtn" ng-click="openRoom()">Open Room</button>
+             <button class="btn btn-danger" ng-disabled="!openRoomBtn" ng-click="leaveRoom()">Leave room </button>
+              <button class="btn btn-danger" ng-disabled="!openRoomBtn" ng-click="replaceScreen()">Enable screen </button>
+            
+<div class="row">
+    <div class="col-md-6">
+    <h2>LOCAL</h2>
+            <div id="local-container"></div>
+    </div>
+    <div class="col-md-6">
+    <h2>REMOTE</h2>
+            <div id="remote-container"></div>
+    </div>
+</div>
+
+            <div ng-model="audiosContainer"></div>
+        </section>
+
+
+      
