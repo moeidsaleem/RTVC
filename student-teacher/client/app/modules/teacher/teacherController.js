@@ -1,5 +1,5 @@
 
-app.controller('teacherCtrl', function ($scope,$firebaseArray,$rootScope,$http,sessionService,$routeParams,$document,$firebaseObject){
+app.controller('teacherCtrl', function ($scope,$firebaseArray,$location,$rootScope,$http,sessionService,$routeParams,$document,$firebaseObject){
 var vm = this;
 // vm.sessionService = sessionService;
 const db = firebase.database().ref();
@@ -14,7 +14,7 @@ $scope.invites = $firebaseArray(invitesRef);
 $scope.loadStudents = function(){
 	$http.get('/api/students').then(function(res){
 	$scope.students = res.data;
-})
+});
 }
 //single student
 	$scope.loadStudent = function(){
@@ -60,46 +60,61 @@ $scope.teacherAnalysis = function(){
   // synchronize the object with a three-way data binding
   // click on `index.html` above to see it used in the DOM!
   syncObject.$bindTo($scope, "user");
-  console.log($scope.user);
 
-$scope.inviteStudent = function(id){
-  db.child('students').child(id).push().set({
-    from:'Teacher1',
-    roomId:'teachera'
-  });
+
+
+$scope.inviteStudent = function(x,room){ 
+console.log(x.uniqueId);
+     $location.path('/teacher/test_teacher/'+room);
+
+      var std =db.child('students').child(x.uniqueId).child('invites');
+   
+   $http({
+    method: 'POST',
+    url: '/api/teacher/invite',
+    data: 'from=' + $scope.user.firstName + '&roomid=' + room + '&uniqueId=' + x.uniqueId,
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Login-Ajax-call": 'true'
+    }
+}).then(function(response) {
+    if (response == 'OK') {
+        // success
+        console.log(response.data);
+    } else {
+        // failed
+    }
+});
+
+
 }
 
+          // // GET MESSAGES AS AN ARRAY
+          // var mRef = db.child('atrix').child('messages');
+          // var sRef = db.child('atrix').child('status');
 
-
-          // GET MESSAGES AS AN ARRAY
-          var mRef = db.child('atrix').child('messages');
-          var sRef = db.child('atrix').child('status');
-
-          $scope.messages = $firebaseArray(mRef);
-          $scope.chatstatus = $firebaseArray(sRef);
-              //ADD MESSAGE METHOD
-          $scope.addMessage = function(e) {
-
-            //LISTEN FOR RETURN KEY
-            if (e.keyCode === 13 && $scope.msg) {
-              //ALLOW CUSTOM OR ANONYMOUS USER NAMES
-              var name = 'ali';
-            
-              //FILTER DATE TO TIME & DATE FORMAT
-             var displaydate = $filter('date')(new Date(),'dd-MM-yyyy hh:mm a');
-
-              //ADD TO FIREBASE
-              $scope.messages.$add({
-                from: name,
-                body: $scope.msg,
-                date: displaydate
-              });
+          // $scope.messages = $firebaseArray(mRef);
+          // $scope.chatstatus = $firebaseArray(sRef);
+          //     //ADD MESSAGE METHOD
+          // $scope.addMessage = function(e) {
+          //   //LISTEN FOR RETURN KEY
+          //   if (e.keyCode === 13 && $scope.msg) {
+          //     //ALLOW CUSTOM OR ANONYMOUS USER NAMES
+          //     var name = 'ali';
+          //     //FILTER DATE TO TIME & DATE FORMAT
+          //    var displaydate = $filter('date')(new Date(),'dd-MM-yyyy hh:mm a');
+          //     //ADD TO FIREBASE
+          //     $scope.messages.$add({
+          //       from: name,
+          //       body: $scope.msg,
+          //       date: displaydate
+          //     });
                             
-              //RESET MESSAGE
-              $scope.msg = "";
-            }
+          //     //RESET MESSAGE
+          //     $scope.msg = "";
+          //   }
     
-          };
+          // };
         
 
 
@@ -150,7 +165,7 @@ $scope.inviteStudent = function(id){
              }
 
 
-            $scope.roomId = connection.token();
+            $scope.roomId =  $routeParams.roomid ||connection.token();
             $scope.openRoom = function(){
             	$scope.openRoomBtn = true;
             		connection.open($scope.roomId || 'test-room');

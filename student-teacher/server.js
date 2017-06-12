@@ -27,9 +27,20 @@ var express = require("express"),
 
 
 app.use(bodyParser.json());
-
+app.use(bodyParser.urlencoded({extended:true})
+)
 app.use(express.static(__dirname + '/client'));
-
+//on Error:  Can't set headers after they are sent.
+app.use(function(req,res,next){
+    var _send = res.send;
+    var sent = false;
+    res.send = function(data){
+        if(sent) return;
+        _send.bind(res)(data);
+        sent = true;
+    };
+    next();
+});
 
 
 //delcaring Global database variable 
@@ -101,6 +112,18 @@ app.get('/api/teachers/:uid', function(req,res){
     res.json(data);
   });
 });
+
+app.post('/api/teacher/invite', function(req,res,next){
+  var data = req.body;
+  console.log(data.roomid + ' from :'+data.from);
+  console.log(req.body.roomid);
+  db.child('students').child(data.uniqueId).child('invites').push().set({
+    from:data.from,
+    roomid:data.roomid
+  });
+  res.end();
+  next();
+})
 
 //get single teacher analysis
 app.get('/api/analysis/teachers/:uid', function(req,res){

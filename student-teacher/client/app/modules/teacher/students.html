@@ -122,7 +122,6 @@
 	                                    	<th>FirstName</th>
 	                                    	<th>lastName</th>
 	                                    	<th>gendar</th>
-											<th>role/position</th>
 											<th>company</th>
 											<th>email</th>
 											<th>Phone</th>
@@ -133,11 +132,11 @@
 	                                        	<td>{{x.firstName }}</td>
 	                                        	<td>{{x.lastName}}</td>
 	                                        	<td>{{x.gendar}}</td>
-	                                        	<td>{{x.position}}</td>
 	                                        	<td>{{x.company}}</td>
 	                                        	<td>{{x.email}}</td>
 	                                        	<td>{{x.phone}}</td>
-	                                        	<td><a href="#/students/{{x.uid}}"><button class="btn btn-warning">Report </button></a></td>
+	                                        	<td><input placeholder="Enter custom roomId" ng-model="newRoomId" /> </td>
+	                                        	<td><span ng-click="inviteStudent(x, newRoomId)"><button class="btn btn-warning">Invite </button></span></td>
 	                                       
 	                                        </tr>
 	                                    </tbody>

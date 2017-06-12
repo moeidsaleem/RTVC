@@ -91,13 +91,17 @@ app.config( function ($routeProvider,$locationProvider) {
 		controller: 'teacherCtrl',
 		templateUrl: 'app/modules/teacher/test_teacher.html'
 	})	
+		.when('/teacher/test_teacher/:roomid',{
+		controller: 'teacherCtrl',
+		templateUrl: 'app/modules/teacher/test_teacher.html'
+	})	
 		.when('/teacher/test_student',{
 		controller: 'teacherCtrl',
 		templateUrl: 'app/modules/teacher/test_student.html'
 	})	//------------------------------------------
 		//STudent
 	.when('/student/home', {
-		templateUrl: 'app/modules/teacher/dashboard.html',
+		templateUrl: 'app/modules/student/dashboard.html',
 		controller:'studentCtrl'
 	})
 	.when('/student/profile',{
@@ -129,6 +133,10 @@ app.config( function ($routeProvider,$locationProvider) {
 		templateUrl: 'app/modules/teacher/test_teacher.html'
 	})	
 		.when('/student/test_student',{
+		controller: 'studentCtrl',
+		templateUrl: 'app/modules/student/test_student.html'
+	})	
+		.when('/student/test_student/:roomid',{
 		controller: 'studentCtrl',
 		templateUrl: 'app/modules/student/test_student.html'
 	})	

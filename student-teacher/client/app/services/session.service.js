@@ -13,6 +13,7 @@ this.endSession = function(key){
   }
 this.endAllSessions = function(){
 	   return localStorageService.clearAll();
+	   console.log('All session cleared');
 }
 
 this.checkSession = function(){
