@@ -102,8 +102,6 @@ input:focus{
                     RTVC Student Panel
                 </a>
             </div>
-
-
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li ng-class="{ active: isActive('#/teacher/home')}">
@@ -158,7 +156,7 @@ video{
         <section class="main-panel text-center">
             <div class="make-center">
             <h2>STUDENT </h2>
-             <input  type="text" ng-model="roomId" value="testing">
+             <input  type="text" ng-model="rId" >
              <button class="btn btn-primary" ng-disabled="joinRoomBtn" ng-click="joinRoom()">Join Class</button>
              <button class="btn btn-danger" ng-disabled="!joinRoomBtn" ng-click="leaveRoom()">Leave Class </button>
            <!--    <button class="btn btn-danger" ng-disabled="!openRoomBtn" ng-click="replaceScreen()">Enable screen </button> -->

@@ -95,10 +95,7 @@ app.config( function ($routeProvider,$locationProvider) {
 		controller: 'teacherCtrl',
 		templateUrl: 'app/modules/teacher/test_teacher.html'
 	})	
-		.when('/teacher/test_student',{
-		controller: 'teacherCtrl',
-		templateUrl: 'app/modules/teacher/test_student.html'
-	})	//------------------------------------------
+		//------------------------------------------
 		//STudent
 	.when('/student/home', {
 		templateUrl: 'app/modules/student/dashboard.html',

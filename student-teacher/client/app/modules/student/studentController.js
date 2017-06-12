@@ -16,11 +16,8 @@ if(!vm.sessionService.getSession('uid')){
 
 
 const db = firebase.database().ref();
-console.log('dashboard');
+console.log('Student dashboard');
 $scope.chatEnabled = false;
-$http.get('/api/students', function(res){
-	console.log(res.data);
-})
 
 
 
@@ -179,23 +176,10 @@ $scope.onKeyup = function(e){
     }
 }
 
-//-- Clear Chat
-resetChat();
-
-//-- Print Messages
-// db.child($scope.roomId).child('messages').on('value', function(){
-
-
-// })
-// insertChat("me", "Hello Tom...", 0);  
-// insertChat("you", "Hi, Pablo", 1500);
-// insertChat("me", "What would you like to talk about today?", 3500);
-// insertChat("you", "Tell me a joke",7000);
-// insertChat("me", "Spaceman: Computer! Computer! Do we bring battery?!", 9500);
-// insertChat("you", "LOL", 12000);
-
 
 //-- NOTE: No use time on insertChat.
+
+
 //CHAT CODE ends
 
 
@@ -204,6 +188,7 @@ resetChat();
             var connection = new RTCMultiConnection();
           $scope.roomUrls = '';
 
+//Setting up roomid 
           if(!$scope.roomId){
   console.log('no room id found');
   $scope.roomId = vm.sessionService.getSession('roomid');
@@ -217,15 +202,14 @@ if(!vm.sessionService.getSession('roomid')){
 if($routeParams.roomid){
   $scope.roomId = $routeParams.roomid;
   vm.sessionService.startSession('roomid',$routeParams.roomid);
-  console.log($scope.roomId + ' == '+vm.sessionService.getSession('roomid'));
-
   console.log('setting to routeParams')
 }
 
 
 console.log($scope.roomId);
-var chatRef= db.child('rooms').child($scope.roomId).child('messages');
-$scope.messages = $firebaseArray(chatRef);
+
+// var chatRef= db.child('rooms').child($scope.roomId).child('messages');
+// $scope.messages = $firebaseArray(chatRef);
 
             // by default, socket.io server is assumed to be deployed on your own URL
            // connection.socketURL = 'https://localhost:8080/';
@@ -276,11 +260,14 @@ $scope.messages = $firebaseArray(chatRef);
             var afterJoining = function(){
                    $scope.chatEnabler = true;
                    $scope.joinRoomBtn = true;
-
-
-            }
+                   sessionService.startSession('roomid',$scope.roomId);
+                             console.log('roomid is '+$scope.roomId);
+                             chatRef= db.child('rooms').child($scope.roomId).child('messages').on('child_added', function(snap){
+                                $scope.messages = snap.val();
+            });
+                           }
              $scope.joinRoom = function(){
-
+                  $scope.roomId = $scope.rId;
             connection.checkPresence($scope.roomId, function(isRoomExist, roomid) {
              if (isRoomExist === true) {
                  connection.join($scope.roomId);
