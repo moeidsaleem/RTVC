@@ -60,8 +60,7 @@ $scope.teacherAnalysis = function(){
   syncObject.$bindTo($scope, "user");
   console.log($scope.user);
 
-
-
+  //so this is the login 
 
 
 

@@ -1,3 +1,80 @@
+<div class="container">
+    <h1 class="text-center">TEACHER <i class="fa fa-user"></i> </h1>
+    <p class="text-center">  A Teacher can register to the system and loggedIn to the Teacher dashboard. 
+      The Teacher dashboard allows the teacher to invite students to join the classroom and start room. 
+      The Teacher RTVC let them generate the classroom name(id) to join the classroom if available. 
+    </p>
+    <div class="text-center text-success">
+      Following are the demo password<br>
+      <b class="text-danger">EMAIL </b> <legend>teacher@atrixdigital.com</legend>
+      <b class="text-danger">PASSWORD </b> <legend>demo123</legend><br>
+      
+    </div>
+    <div class="row">
+    <div class="col-md-6">
+       <div class="jumbotron">
+         <div class="container">
+           <form ng-submit="loginTeacher()" role="form">
+             <legend>Login</legend>
+             <div class="form-group">
+               <label for="">Email</label>
+               <input type="text" class="form-control" id="" placeholder="Enter Email" ng-model="login.email">
+             </div>       
+              <div class="form-group">
+               <label for="">Password</label>
+               <input type="password" class="form-control" id="" placeholder="Enter password" ng-model="login.password">
+             </div>         
+             <button type="submit" class="btn btn-primary">Login</button>
+           </form>
+           <p class="text-danger">{{loginError}}</p>
+         </div>
+       </div>
+      </div>
+      <div class="col-md-6">
+      <div class="jumbotron">
+         <div class="container">
+           <form  ng-submit="signupTeacher()" role="form">
+             <legend>Signup</legend>
+             <div class="form-group">
+               <label for="">Email</label>
+               <input type="text" class="form-control" id="" placeholder="Input field"  ng-model="signup.email">
+             </div>      
+              <div class="form-group">
+               <label for="">Password</label>
+               <input type="password" class="form-control" id="" placeholder="Input field"  ng-model="signup.password">
+             </div>          
+             <button type="submit" class="btn btn-primary">Sign Up</button>
+           </form>
+           <p class="text-danger">{{signupError}}</p>
+         </div>
+       </div>
+
+      </div>
+    </div>
+      </div>
+
+      <div class="text-center">
+        Copyright <a href="http://atrixdigital.com"> <b>Atrix Digital Solutions</b></a>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
 <div class="container" ng-init="setroomId()">
         <h1>TEACHER </h1>
         <div class="row">
@@ -39,4 +116,4 @@
 
           </div>
         </div>
-          </div>
+          </div> -->
